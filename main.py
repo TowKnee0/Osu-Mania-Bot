@@ -12,8 +12,8 @@ class OsuManiaBot(object):
 
     Instance Attributes:
       - bbox: coordinates in the form (x1, y1, x2, y2) of where the bot will look.
-              this should ideally have a height of 1-5 pixels and width of the exact
-              play area.
+              this should ideally have a height of 1-5 pixels as close to the line where
+              notes disappear as possible and width of the exact play area.
       - columns: the number of columns of the map
       - _col_states: the current state of each column: pressed or released
       - _codes: mapping of column number to keyboard key. Keybinds should be set
@@ -91,7 +91,8 @@ class OsuManiaBot(object):
         """Displays the screen based on given bbox.
 
         Use this to find the correct bbox before using the bot. Ideally, the bbox should be
-        1-5 pixels tall and exact width of play area.
+        1-5 pixels tall as close to the horizontal line where notes disappear as possible
+         and exact width of play area.
         """
 
         with mss.mss() as sct:
@@ -132,6 +133,6 @@ if __name__ == '__main__':
     time.sleep(2)
     bbox4 = (250, 574, 510, 575)
     bbox7 = (225, 574, 575, 575)
-    bot = OsuManiaBot(bbox7, columns=7)
+    bot = OsuManiaBot(bbox4, columns=4)
     # bot.test_region(bbox7)
     bot.run()
