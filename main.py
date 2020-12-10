@@ -97,7 +97,7 @@ class OsuManiaBot(object):
 
         with mss.mss() as sct:
 
-             while True:
+            while True:
                 screen = np.array(sct.grab(bbox))
                 gray = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
                 retv, binary = cv2.threshold(gray, 40, 255, cv2.THRESH_BINARY)
@@ -114,6 +114,7 @@ class OsuManiaBot(object):
         """
 
         self._inplay = True
+        last = time.time()
 
         with mss.mss() as snap:
 
@@ -127,12 +128,18 @@ class OsuManiaBot(object):
 
                 self._handle_press(columns)
 
+                print(time.time() - last)
+                last = time.time()
 
-if __name__ == '__main__':
+                if cv2.waitKey(3) & 0xFF == ord('q'):
+                    cv2.destroyAllWindows()
+                    break
 
-    time.sleep(2)
-    bbox4 = (250, 574, 510, 575)
-    bbox7 = (225, 574, 575, 575)
-    bot = OsuManiaBot(bbox4, columns=4)
-    # bot.test_region(bbox7)
-    bot.run()
+# if __name__ == '__main__':
+
+time.sleep(2)
+bbox4 = (250, 574, 510, 575)
+bbox7 = (225, 574, 575, 575)
+bot = OsuManiaBot(bbox7, columns=7)
+# bot.test_region(bbox7)
+bot.run()
