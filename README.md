@@ -1,9 +1,9 @@
 # Osu Mania Bot
-##Intro
+## ntro
 An Osu!Mania bot that can full clear almost any map on either standard or double time. Supports maps from 1-12K.
 Meant for fun, not for ranked.
 
-##Usage
+## Usage
 Install all required dependencies:
 
     pip install opencv-python
